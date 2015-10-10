@@ -32,3 +32,6 @@ accounts-base
 accounts-ui
 check
 momentjs:moment
+natestrauser:animate-css
+less
+reactive-dict
