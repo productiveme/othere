@@ -19,7 +19,7 @@ Template.newpost.events({
   'click button[name=snap]': function (ev, tmpl) {
     var cameraOptions = {
       width: 800,
-      height: 600
+      height: 800
     };
 
     MeteorCamera.getPicture(cameraOptions, function (error, data) {
