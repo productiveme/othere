@@ -28,5 +28,11 @@
 </head>
 
 <template name="main">
-  {{> yield}}
+  {{#if currentUser}}
+    {{> yield}}
+    <p><a href="#" class="logout">Logout</a></p>
+  {{else}}
+    {{> login}}
+    {{> register}}
+  {{/if}}
 </template>
