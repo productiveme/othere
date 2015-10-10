@@ -30,7 +30,7 @@ createFixtures = function() {
       unlikeCount: 0,
       geo: {
         lat: chance.latitude(),
-        long: chance.longitude()
+        lng: chance.longitude()
       },
       timestamp: chance.date({year: 2015}),
       active: true

@@ -24,3 +24,9 @@ accounts-facebook
 accounts-twitter
 meteortoys:allthings
 iron:router
+mdg:camera
+mdg:geolocation
+bootstrap
+reactive-var
+accounts-base
+accounts-ui
