@@ -36,6 +36,6 @@ Template.newpost.events({
       timestamp: new Date(),
       active: true
     });
-    Router.go('/');
+    Router.go('/discover');
   }
 });
