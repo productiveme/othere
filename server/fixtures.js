@@ -22,7 +22,7 @@ createFixtures = function() {
   //Insert 10 random posts
   for(var i = 0; i < 10; i++) {
     Posts.insert({
-      photoSrc: chance.pick(["http://placehold.it/600x800","http://placehold.it/800x600"]),
+      photoSrc: chance.pick(["http://placehold.it/800x800","http://placehold.it/800x800"]),
       title: chance.word() + ' ' + chance.word(),
       description: chance.sentence({word: 10}).substring(0,160),
       owner: chance.pick(userIds),
