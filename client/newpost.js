@@ -31,10 +31,11 @@ Template.newpost.events({
       photoSrc: tmpl.photoSrc.get(),
       title: tmpl.$("input[name=title]").val(),
       description: tmpl.$("input[name=description]").val(),
-      owner: "",
+      owner: Meteor.userId(),
       geo: Geolocation.latLng(),
       timestamp: new Date(),
       active: true
-    })
+    });
+    Router.go('/');
   }
 });
