@@ -1,5 +1,5 @@
 Meteor.startup(function() {
-  if(!Posts.findOne()) {
+  if(!Meteor.users.findOne()) {
     createFixtures();
   }
 });
