@@ -30,12 +30,12 @@ Template.newpost.events({
     Posts.insert({
       photoSrc: tmpl.photoSrc.get(),
       title: tmpl.$("input[name=title]").val(),
-      description: tmpl.$("input[name=description]").val(),
+      description: tmpl.$("textarea[name=description]").val(),
       owner: Meteor.userId(),
       geo: Geolocation.latLng(),
       timestamp: new Date(),
       active: true
     });
-    Router.go('/');
+    Router.go('/discover');
   }
 });
