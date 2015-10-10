@@ -1,0 +1,7 @@
+{
+  "minimumVotes": 10,
+  "numberOfDaysToCheckVotes": 7,
+  "public": {
+    "appname": "Othere"
+  }
+}

@@ -8,9 +8,12 @@ Router.onBeforeAction(function () {
   } else {
     this.next();
   }
-})
+});
 
-Router.route("newpost");
 Router.route('/', function() {
   this.render('splash');
 });
+
+Router.route("newpost");
+
+Router.route("discover");

@@ -30,3 +30,5 @@ bootstrap
 reactive-var
 accounts-base
 accounts-ui
+check
+momentjs:moment
