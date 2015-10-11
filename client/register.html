@@ -1,25 +1,29 @@
 <template name="register">
     <div class="col-md-4">
-      <form class="form-signin">
-        <strong>Joint the ultimate pothole directory</strong>
+      <form class="form-signin whitefont">
+        <strong>Join the ultimate pothole directory</strong>
         <h2>Othere</h2>
 
         <div class="form-group">
-         <label for="registerUsername">Username:</label>
-          <input type="text" id="registerUsername" class="form-control input-lg" placeholder="Username" name="registerUsername">
+          <div class="input-group">
+            <div class="input-group-addon glyphicon glyphicon-user glyphs whitefont"></div>
+            <input type="text" id="registerUsername" class="form-control input-lg transparent-input whitefont" placeholder="username" name="registerUsername">
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="registerEmail">E-Mail:</label>
-          <input type="email" id="registerEmail" class="form-control input-lg" placeholder="E-mail" name="registerEmail">
+          <div class="input-group">
+            <div class="input-group-addon glyphicon glyphicon-envelope glyphs whitefont"></div>
+            <input type="email" id="registerEmail" class="form-control input-lg transparent-input" placeholder="email" name="registerEmail">
+          </div>
         </div>
-
         <div class="form-group">
-          <label for="registerPassword">Password:</label>
-          <input type="password" id="registerPassword" class="form-control input-lg" placeholder="Password" name="registerPassword">
+          <div class="input-group">
+            <div class="input-group-addon glyphicon glyphicon-lock glyphs whitefont"></div>
+            <input type="password" id="registerPassword" class="form-control input-lg transparent-input" placeholder="password" name="registerPassword">
+          </div>
         </div>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <button class="btn btn-lg btn-primary btn-block btn-black" type="submit">Sign up</button>
       </form>
     </div>
 </template>
