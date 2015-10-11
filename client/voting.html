@@ -1,9 +1,15 @@
 <Template name="voting">
   <div id="votingTemplate" class="hidingLeft abs">
     <div class="voteContainer">
-      <div class="post" style="display: block;">
-        <div class="photo" style="display: block; background-image: url({{url}})"></div>
-      </div>
+      {{#each posts}}
+        {{>post}}
+      {{/each}}
     </div>
   </div>
 </Template>
+
+<template name="post">
+  <div class="post">
+    <img src="{{photoSrc}}" class="photo img-thumbnail img-responsive center-block">
+  </div>
+</template>

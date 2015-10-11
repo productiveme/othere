@@ -40,10 +40,24 @@
 // }
 
 .voteContainer {
+  position: relative;
+  list-style-type: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   .post {
-    width:50%;
-    height: 500px;
-    border: solid 1px @brand-danger;
+    width:100%;
+    height: auto;
+    display: block;
+    position: absolute;
+  }
+
+  .photo {
+    display: block;
   }
 }
 
