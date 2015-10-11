@@ -15,3 +15,38 @@ Meteor.startup(function() {
   });
   initializing = false;
 });
+
+Meteor.methods({
+  likePost: function(postId) {
+    check(postId, String);
+    check(this.userId, String);
+
+    var vote = {
+      user: {
+        _id: this.userId
+      },
+      post: {
+        _id: this._id
+      },
+      voted: 1,
+      timestamp: new Date()
+    };
+    return Votes.insert(vote);
+  },
+  unlikePost: function(postId) {
+    check(postId, String);
+    check(this.userId, String);
+
+    var vote = {
+      user: {
+        _id: this.userId
+      },
+      post: {
+        _id: this._id
+      },
+      voted: -1,
+      timestamp: new Date()
+    };
+    return Votes.insert(vote);
+  }
+})
