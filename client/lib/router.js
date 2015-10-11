@@ -14,10 +14,6 @@ Router.route('/', function() {
   this.render('discover');
 });
 
-Router.route('/register', function() {
-  this.render('register');
-});
-
 Router.route("newpost");
 
 Router.route("discover");
