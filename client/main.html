@@ -33,8 +33,15 @@
       {{> yield}}
       <p><a href="#" class="logout">Logout</a></p>
     {{else}}
-      {{> login}}
-      {{> register}}
+      <!-- {{> head}} -->
+      {{#unless loggingIn}}
+        {{#unless isRegistering}}
+          {{> login}}
+        {{else}}
+          {{> register}}
+        {{/unless}}
+      {{/unless}}
+
     {{/if}}
   </div>
 </template>
