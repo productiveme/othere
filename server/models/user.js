@@ -1,6 +1,5 @@
 Meteor.methods({
   shouldUserVoteFirst: function() {
-    debugger;
     check(this.userId, String);
 
     var filters = {

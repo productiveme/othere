@@ -11,13 +11,12 @@ Router.onBeforeAction(function () {
 });
 
 Router.route('/', function() {
-  this.render('splash');
+  this.render('discover');
 });
 
 Router.route('/register', function() {
   this.render('register');
 });
-
 
 Router.route("newpost");
 
