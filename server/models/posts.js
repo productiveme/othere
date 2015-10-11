@@ -1,3 +1,6 @@
+Posts._ensureIndex({'loc.coordinates':'2dsphere'});
+Posts._ensureIndex({'voters': 1});
+
 Meteor.startup(function() {
   var initializing = true;
   Votes.find().observe({
@@ -28,7 +31,6 @@ Meteor.publish("posts", function() {
 Meteor.publish("postsToVote", function(lng, lat) {
   return Meteor.call("findPostsNearMe", this.UserId, lng, lat);
 });
-Posts._ensureIndex({'loc.coordinates':'2dsphere'});
 
 Meteor.methods({
   likePost: function(postId) {
