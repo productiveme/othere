@@ -1,10 +1,10 @@
-function likeCard($ctrl, vote) {
+function likeCard($ctrl) {
   $ctrl.addClass('rotate-left').delay(700).fadeOut(1);
   $('.post').find('.status').remove();
   $ctrl.append('<div class="status like">Like!</div>');
 }
 
-function unlikeCard($ctrl, vote) {
+function unlikeCard($ctrl) {
   $ctrl.addClass('rotate-right').delay(700).fadeOut(1);
   $('.post').find('.status').remove();
   $ctrl.append('<div class="status dislike">Dislike!</div>');
@@ -18,11 +18,11 @@ Template.voting.helpers({
 
 Template.voting.events({
   "swiperight .post": function(ev, tmpl) {
-    likeCard($(ev.currentTarget), vote);
+    likeCard($(ev.currentTarget));
     Meteor.call("likePost", this._id);
   },
   "swipeleft .post": function(ev, tmpl) {
-    unlikeCard($(ev.currentTarget), vote);
+    unlikeCard($(ev.currentTarget));
     Meteor.call("unlikePost", this._id);
   }
 });

@@ -1,10 +1,15 @@
 <Template name="voting">
   <div id="votingTemplate" class="hidingLeft abs">
-    <div class="voteContainer">
-      {{#each posts}}
-        {{>post}}
-      {{/each}}
+    We need your opinion!
+    <div class="posts">
+      <div class="voteContainer">
+        {{#each posts}}
+          {{>post}}
+        {{/each}}
+      </div>
     </div>
+    <button class="btn">Hate</button>
+    <button class="btn">Love</button>
   </div>
 </Template>
 
