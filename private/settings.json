@@ -3,5 +3,6 @@
   "numberOfDaysToCheckVotes": 7,
   "public": {
     "appname": "Othere"
-  }
+  },
+  "nearInMetres": 30000
 }

@@ -2,11 +2,13 @@
   <div id="votingTemplate" class="hidingBottom abs">
     We need your opinion!
     <div class="posts">
-      <div class="voteContainer">
-        {{#each posts}}
-          {{>post}}
-        {{/each}}
-      </div>
+      {{#HammerTouchArea gestureMap=swipingGestures}}
+        <div class="voteContainer">
+          {{#each posts}}
+            {{>post}}
+          {{/each}}
+        </div>
+      {{/HammerTouchArea}}
     </div>
   </div>
 </Template>

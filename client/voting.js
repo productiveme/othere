@@ -17,7 +17,12 @@ function unlikeCard($ctrl) {
 }
 
 Template.voting.onRendered(function() {
-  remaining.set(Posts.find().count());
+  this.autorun(function() {
+    coords = Session.get("coordinates") || {};
+    Meteor.subscribe("postsToVote", coords.lng, coords.lat, function() {
+      remaining.set(Posts.find().count());
+    })
+  });
 
   this.autorun(function() {
     if(remaining.get() <= 0) {
@@ -29,17 +34,16 @@ Template.voting.onRendered(function() {
 Template.voting.helpers({
   posts: function() {
     return Posts.find();
-  }
-});
-
-Template.voting.events({
-  "swiperight .post": function(ev, tmpl) {
-    likeCard($(ev.currentTarget));
-    Meteor.call("likePost", this._id);
   },
-  "swipeleft .post": function(ev, tmpl) {
-    unlikeCard($(ev.currentTarget));
-    Meteor.call("unlikePost", this._id);
+  swipingGestures: {
+    "swiperight .post": function (ev, tmpl) {
+      likeCard($(ev.currentTarget));
+      Meteor.call("likePost", this._id);
+    },
+    "swipeleft .post": function(ev, tmpl) {
+      unlikeCard($(ev.currentTarget));
+      Meteor.call("unlikePost", this._id);
+    }
   }
 });
 
