@@ -1,14 +1,11 @@
-// var remaining = new ReactiveVar();
+var remaining = new ReactiveVar();
 
 function likeCard($ctrl) {
   $ctrl.find('button').hide();
   $ctrl.addClass('rotate-left').delay(700).fadeOut(1);
   $('.post').find('.status').remove();
   $ctrl.append('<div class="status like">Like!</div>');
-  if($('.post').find().length <= 1) {
-    DiscoverVM.state.set("closeVoting", true);
-  }
-  // remaining.set(remaining.get()-1);
+  remaining.set(remaining.get()-1);
 }
 
 function unlikeCard($ctrl) {
@@ -16,20 +13,22 @@ function unlikeCard($ctrl) {
   $ctrl.addClass('rotate-right').delay(700).fadeOut(1);
   $('.post').find('.status').remove();
   $ctrl.append('<div class="status dislike">Dislike!</div>');
-  if($('.post').find().length <= 1) {
-    DiscoverVM.state.set("closeVoting", true);
-  }
-  // remaining.set(remaining.get()-1);
+  remaining.set(remaining.get()-1);
 }
 
 Template.voting.onRendered(function() {
   this.autorun(function() {
     coords = Session.get("coordinates") || {};
     Meteor.subscribe("postsToVote", coords.lng, coords.lat, function() {
-      // remaining.set(Posts.find({ likeCount: { $exists: 0 } }).count());
+      remaining.set(Posts.find().count());
     })
   });
 
+  this.autorun(function() {
+    if(remaining.get() <= 0) {
+      DiscoverVM.state.set("closeVoting", true);
+    }
+  });
 });
 
 Template.voting.helpers({
@@ -63,13 +62,12 @@ Template.post.helpers({
 
 Template.post.events({
   "click button[name=love], swiperight .post": function(ev, tmpl) {
-    postId = this._id;
+    
     likeCard(tmpl.$('.post'));
-    Meteor.call("likePost", postId);
+    Meteor.call("likePost", this._id);
   },
   "click button[name=hate], swipeleft .post": function(ev, tmpl) {
-    postId = this._id;
     unlikeCard(tmpl.$('.post'));
-    Meteor.call("unlikePost", postId);
+    Meteor.call("unlikePost", this._id);
   }
 });
