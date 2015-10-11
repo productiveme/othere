@@ -1,22 +1,26 @@
-Posts._ensureIndex({'loc.coordinates':'2dsphere'});
+Posts._ensureIndex({'loc':'2dsphere'});
 Posts._ensureIndex({'voters': 1});
 
 // extend Posts collection
 Posts.filterUnseenPostsNearMe = function(userId, lng, lat) {
   check(userId, String);
-  check(lng, Match.OneOf(Match.Optional(Number),undefined));
-  check(lat, Match.OneOf(Match.Optional(Number),undefined));
-
-  return {}; //#JS
+  try {
+    check(lng, Number);
+    check(lat, Number);
+  } catch (err) {
+    return { __blocked: true };
+  }
 
   filters = {
-    $near: {
-      $geometry: {
-        type: "Point",
-        coordinates: [
-          lng, lat
-        ],
-        $maxDistance: Meteor.settings.nearInMetres
+    "loc": {
+      $near: {
+        $geometry: {
+          type: "Point",
+          coordinates: [
+            lng, lat
+          ],
+          $maxDistance: Meteor.settings.nearInMetres
+        }
       }
     },
     voters: {
