@@ -28,6 +28,7 @@
 </head>
 
 <template name="main">
+   <div class="container">
   {{#if currentUser}}
     {{> yield}}
     <p><a href="#" class="logout">Logout</a></p>
@@ -35,4 +36,5 @@
     {{> login}}
     {{> register}}
   {{/if}}
+  </div>
 </template>

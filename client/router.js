@@ -14,6 +14,11 @@ Router.route('/', function() {
   this.render('splash');
 });
 
+Router.route('/register', function() {
+  this.render('register');
+});
+
+
 Router.route("newpost");
 
 Router.route("discover");

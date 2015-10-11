@@ -1,23 +1,27 @@
-Template.discover.onCreated(function() {
-  var tmpl = this;
-  tmpl.shouldVoteFirst = new ReactiveVar();
-});
-
 Template.discover.onRendered(function() {
-  var tmpl = this;
+  DiscoverVM.state = new ReactiveDict();
+
+  this.autorun(function() {
+    if(DiscoverVM.state.get("shouldVoteFirst")) {
+      DiscoverVM.showVoting();
+    }
+  });
+
+  this.autorun(function() {
+    if(DiscoverVM.state.get("closeVoting")) {
+      DiscoverVM.hideVoting();
+    }
+  });
+
   Meteor.call("shouldUserVoteFirst", function(err, result) {
     if(!err) {
-      tmpl.shouldVoteFirst.set(result);
+      DiscoverVM.state.set("shouldVoteFirst", result);
     }
   });
 });
 
 Template.discover.helpers({
-  voteFirst: function() {
-    var tmpl = Template.instance();
-    return tmpl.shouldVoteFirst.get();
-  },
-  name: function() {
-    return Meteor.settings.public.appname;
-  }
+  // voteFirst: function() {
+  //   return DiscoverVM.state.get("shouldVoteFirst")
+  // }
 });
