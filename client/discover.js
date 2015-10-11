@@ -13,14 +13,18 @@ Template.discover.onRendered(function() {
     }
   });
 
-  coords = Session.get("coordinates");
-  if(_.isObject(coords)) {
-    Meteor.call("shouldUserVoteFirst", coords.lng, coords.lat, function(err, result) {
-      if(!err) {
-        DiscoverVM.state.set("shouldVoteFirst", result);
-      }
-    });
-  }
+
+  this.autorun(function() {
+    coords = Session.get("coordinates");
+    if(_.isObject(coords)) {
+      Meteor.call("shouldUserVoteFirst", coords.lng, coords.lat, function(err, result) {
+        if(!err) {
+          DiscoverVM.state.set("shouldVoteFirst", result);
+        }
+      });
+    }
+  });
+
 });
 
 Template.discover.helpers({

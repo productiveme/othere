@@ -18,7 +18,8 @@ function unlikeCard($ctrl) {
 
 Template.voting.onRendered(function() {
   this.autorun(function() {
-    Meteor.subscribe("postToVote", function() {
+    coords = Session.get("coordinates") || {};
+    Meteor.subscribe("postsToVote", coords.lng, coords.lat, function() {
       remaining.set(Posts.find().count());
     })
   });
@@ -34,7 +35,7 @@ Template.voting.helpers({
   posts: function() {
     return Posts.find();
   },
-  swipingGestures: function() {
+  swipingGestures: {
     "swiperight .post": function (ev, tmpl) {
       likeCard($(ev.currentTarget));
       Meteor.call("likePost", this._id);

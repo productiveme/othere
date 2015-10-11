@@ -1,9 +1,12 @@
 Meteor.methods({
   shouldUserVoteFirst: function(lng, lat) {
+    return true; //#JS
     check(this.userId, String);
+    check(lng, Number);
+    check(lat, Number);
 
     var filters = {
-      userId: this.userId,
+      "user._id": this.userId,
       timestamp: {
         $gte: moment().subtract(Meteor.settings.numberOfDaysToCheckVotes,'days').toDate()
       }
@@ -16,7 +19,7 @@ Meteor.methods({
     };
 
     shouldVote = Votes.find(filters, options).count() < Meteor.settings.minimumVotes;
-    somethingToVoteOn = Meteor.call("findUnseenPostsNearMe", lng, lat);
+    somethingToVoteOn = Posts.find(Posts.filterUnseenPostsNearMe(this.userId, lng, lat)).count() > 0;
     return shouldVote && somethingToVoteOn;
   }
 });
