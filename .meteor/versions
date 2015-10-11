@@ -20,6 +20,7 @@ caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.0.6
+coffeescript@1.0.10
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
 ddp-client@1.2.1
@@ -35,6 +36,7 @@ email@1.0.7
 es5-shim@4.1.13
 facebook@1.2.2
 fastclick@1.0.7
+gadicohen:reactive-window@1.0.6
 geojson-utils@1.0.4
 gwendall:body-events@0.1.6
 hot-code-push@1.0.0
@@ -86,6 +88,7 @@ mobile-status-bar@1.0.6
 momentjs:moment@2.10.6
 mongo@1.1.2
 mongo-id@1.0.1
+mrt:isolate-value@2.0.2
 msavin:jetsetter@1.2.0
 msavin:mongol@1.4.1
 natestrauser:animate-css@3.4.0
