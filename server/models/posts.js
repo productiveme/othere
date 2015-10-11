@@ -2,8 +2,7 @@ Posts._ensureIndex({'loc':'2dsphere'});
 Posts._ensureIndex({'voters': 1});
 
 // extend Posts collection
-Posts.filterUnseenPostsNearMe = function(userId, lng, lat) {
-  check(userId, String);
+Posts.filterNearMe = function(lng, lat) {
   try {
     check(lng, Number);
     check(lat, Number);
@@ -22,11 +21,19 @@ Posts.filterUnseenPostsNearMe = function(userId, lng, lat) {
           $maxDistance: Meteor.settings.nearInMetres
         }
       }
-    },
+    }
+  }
+  return filters;
+}
+
+Posts.filterUnseenPostsNearMe = function(userId, lng, lat) {
+  check(userId, String);
+  var filters = Posts.filterNearMe(lng, lat);
+  filters = _.extend(filters, {
     voters: {
       $ne: userId
     }
-  }
+  });
   return filters;
 };
 
@@ -53,12 +60,16 @@ Meteor.startup(function() {
   initializing = false;
 });
 
-Meteor.publish("posts", function() {
-  return Posts.find();
-})
+Meteor.publish("bestposts", function(lng, lat) {
+  return Posts.find(Posts.filterNearMe(lng, lat), {sort: {likeCount: -1}, limit: 5, fields: {photoSrc: 1, title: 1, description: 1, likeCount: 1, unlikeCount: 1}});
+});
+
+Meteor.publish("worstposts", function(lng, lat) {
+  return Posts.find(Posts.filterNearMe(lng, lat), {sort: {unlikeCount: -1}, limit: 5, fields: {photoSrc: 1, title: 1, description: 1, likeCount: 1, unlikeCount: 1}});
+});
 
 Meteor.publish("postsToVote", function(lng, lat) {
-  return Posts.find(Posts.filterUnseenPostsNearMe(this.userId, lng, lat))
+  return Posts.find(Posts.filterUnseenPostsNearMe(this.userId, lng, lat), {fields: {photoSrc: 1, title: 1, description: 1}})
 });
 
 Meteor.methods({
@@ -71,7 +82,7 @@ Meteor.methods({
         _id: this.userId
       },
       post: {
-        _id: this._id
+        _id: postId
       },
       voted: 1,
       timestamp: new Date()
@@ -87,7 +98,7 @@ Meteor.methods({
         _id: this.userId
       },
       post: {
-        _id: this._id
+        _id: postId
       },
       voted: -1,
       timestamp: new Date()
