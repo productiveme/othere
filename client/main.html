@@ -31,10 +31,10 @@
   <div class="container">
     {{#if currentUser}}
       {{> yield}}
-      <p><a href="#" class="logout">Logout</a></p>
     {{else}}
       <!-- {{> head}} -->
       {{#unless loggingIn}}
+        <p><a href="#" class="logout">Logout</a></p>
         {{#unless isRegistering}}
           {{> login}}
         {{else}}
