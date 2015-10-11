@@ -28,11 +28,13 @@
 </head>
 
 <template name="main">
-  {{#if currentUser}}
-    {{> yield}}
-    <p><a href="#" class="logout">Logout</a></p>
-  {{else}}
-    {{> login}}
-    {{> register}}
-  {{/if}}
+  <div class="container">
+    {{#if currentUser}}
+      {{> yield}}
+      <p><a href="#" class="logout">Logout</a></p>
+    {{else}}
+      {{> login}}
+      {{> register}}
+    {{/if}}
+  </div>
 </template>
