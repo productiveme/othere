@@ -4,8 +4,8 @@ Posts._ensureIndex({'voters': 1});
 // extend Posts collection
 Posts.filterUnseenPostsNearMe = function(userId, lng, lat) {
   check(userId, String);
-  check(lng, Number);
-  check(lat, Number);
+  check(lng, Match.OneOf(Match.Optional(Number),undefined));
+  check(lat, Match.OneOf(Match.Optional(Number),undefined));
 
   return {}; //#JS
 

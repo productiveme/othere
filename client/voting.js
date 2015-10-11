@@ -34,25 +34,38 @@ Template.voting.onRendered(function() {
 Template.voting.helpers({
   posts: function() {
     return Posts.find();
+  }
+  // },
+  // hammerInitOptions: {
+  //   cssProps: { userSelect: 'all' }
+  // },
+  // swipingGestures: {
+  //   "swiperight .photo": function (ev, tmpl) {
+  //     likeCard($(ev.target).closest('.post'));
+  //     Meteor.call("likePost", this._id);
+  //   },
+  //   "swipeleft .photo": function(ev, tmpl) {
+  //     unlikeCard($(ev.target).closest('.post'));
+  //     Meteor.call("unlikePost", this._id);
+  //   }
+  // }
+});
+
+Template.post.helpers({
+  photoWidth: function() {
+    return rwindow.$width() * 0.9;
   },
-  swipingGestures: {
-    "swiperight .post": function (ev, tmpl) {
-      likeCard($(ev.currentTarget));
-      Meteor.call("likePost", this._id);
-    },
-    "swipeleft .post": function(ev, tmpl) {
-      unlikeCard($(ev.currentTarget));
-      Meteor.call("unlikePost", this._id);
-    }
+  photoHeight: function() {
+    return rwindow.$width() * 0.9;
   }
 });
 
 Template.post.events({
-  "click button[name=love]": function(ev, tmpl) {
+  "click button[name=love], swiperight .photo, swiperight .post": function(ev, tmpl) {
     likeCard(tmpl.$('.post'));
     Meteor.call("likePost", this._id);
   },
-  "click button[name=hate]": function(ev, tmpl) {
+  "click button[name=hate], swipeleft .photo, swipeleft .post": function(ev, tmpl) {
     unlikeCard(tmpl.$('.post'));
     Meteor.call("unlikePost", this._id);
   }
