@@ -6,5 +6,9 @@ Template.register.events({
       email: tmpl.$("input[name=registerEmail]").val(), 
       password: tmpl.$("input[name=registerPassword]").val()
     });
+  },
+ 'click .loginLink': function(event, tmpl) {
+    event.preventDefault();
+    Session.set("isRegistering",false);
   }
 });

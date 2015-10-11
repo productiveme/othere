@@ -34,8 +34,14 @@
       <p><a href="#" class="logout">Logout</a></p>
     {{else}}
       <!-- {{> head}} -->
-      {{> login}}
-      {{> register}}
+      {{#unless loggingIn}}
+        {{#unless isRegistering}}
+          {{> login}}
+        {{else}}
+          {{> register}}
+        {{/unless}}
+      {{/unless}}
+
     {{/if}}
   </div>
 </template>
