@@ -3,7 +3,12 @@ Meteor.startup(function() {
   Votes.find().observe({
     added: function(doc) {
       if (!initializing) {
-        var operation = { $inc: {} };
+        var operation = {
+          $addToSet: {
+            voters: doc.user._id
+          },
+          $inc: {}
+        };
         if(doc.voted > 0) {
           operation.$inc.likeCount = 1;
         } else {
@@ -15,6 +20,15 @@ Meteor.startup(function() {
   });
   initializing = false;
 });
+
+Meteor.publish("posts", function() {
+  return Posts.find();
+})
+
+Meteor.publish("postsToVote", function(lng, lat) {
+  return Meteor.call("findPostsNearMe", this.UserId, lng, lat);
+});
+Posts._ensureIndex({'loc.coordinates':'2dsphere'});
 
 Meteor.methods({
   likePost: function(postId) {
@@ -48,5 +62,44 @@ Meteor.methods({
       timestamp: new Date()
     };
     return Votes.insert(vote);
+  },
+  insertPost: function(photoSrc, title, description, lng, lat) {
+    check(photoSrc, String);
+    check(title, String);
+    check(description, String);
+    check(lng, Number);
+    check(lat, Number);
+
+    Posts.insert({
+      photoSrc: photoSrc,
+      title: title,
+      description: description,
+      owner: this.userId,
+      "loc": {
+        "type" : "Point",
+        "coordinates" : [ lng, lat ]
+      },
+      timestamp: new Date(),
+      active: true
+    });
+  },
+  findUnseenPostsNearMe: function(lng, lat) {
+    check(this.userId, String);
+    check(lng, Number);
+    check(lat, Number);
+    Posts.find({
+      $near: {
+        $geometry: {
+          type: "Point",
+          coordinates: [
+            lng, lat
+          ],
+          $maxDistance: Meteor.settings.nearInMetres
+        }
+      },
+      voters: {
+        $ne: this.userId
+      }
+    })
   }
 })

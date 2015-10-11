@@ -17,7 +17,11 @@ function unlikeCard($ctrl) {
 }
 
 Template.voting.onRendered(function() {
-  remaining.set(Posts.find().count());
+  this.autorun(function() {
+    Meteor.subscribe("postToVote", function() {
+      remaining.set(Posts.find().count());
+    })
+  });
 
   this.autorun(function() {
     if(remaining.get() <= 0) {

@@ -1,5 +1,5 @@
 Meteor.methods({
-  shouldUserVoteFirst: function() {
+  shouldUserVoteFirst: function(lng, lat) {
     check(this.userId, String);
 
     var filters = {
@@ -15,6 +15,8 @@ Meteor.methods({
       }
     };
 
-    return Votes.find(filters, options).count() < Meteor.settings.minimumVotes;
+    shouldVote = Votes.find(filters, options).count() < Meteor.settings.minimumVotes;
+    somethingToVoteOn = Meteor.call("findUnseenPostsNearMe", lng, lat);
+    return shouldVote && somethingToVoteOn;
   }
 });
