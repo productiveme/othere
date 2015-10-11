@@ -1,13 +1,10 @@
 Template.register.events({
-  'submit form': function(event){
+  'submit form': function(event, tmpl){
     event.preventDefault();
-    var usernameVar = event.target.registerUsername.value;
-    var emailVar = event.target.registerEmail.value;
-    var passwordVar = event.target.registerPassword.value;
     Accounts.createUser({
-      username: usernameVar,
-      email: emailVar,
-      password: passwordVar
+      username: tmpl.$("input[name=registerUsername]").val(), 
+      email: tmpl.$("input[name=registerEmail]").val(), 
+      password: tmpl.$("input[name=registerPassword]").val()
     });
   }
 });
