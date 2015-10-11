@@ -28,9 +28,12 @@ createFixtures = function() {
       owner: chance.pick(userIds),
       likeCount: 0,
       unlikeCount: 0,
-      geo: {
-        lat: chance.latitude(),
-        lng: chance.longitude()
+      "loc": {
+        "type" : "Point",
+        "coordinates" : [
+            chance.longitude(),
+            chance.latitude()
+        ]
       },
       timestamp: chance.date({year: 2015}),
       active: true

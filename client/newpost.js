@@ -27,12 +27,19 @@ Template.newpost.events({
     });
   },
   'click button[name=submit]': function (ev, tmpl) {
+    coordinates = Geolocation.latLng();
     Posts.insert({
       photoSrc: tmpl.photoSrc.get(),
       title: tmpl.$("input[name=title]").val(),
       description: tmpl.$("textarea[name=description]").val(),
       owner: Meteor.userId(),
-      geo: Geolocation.latLng(),
+      "loc": {
+        "type" : "Point",
+        "coordinates" : [
+            coordinates.lng,
+            coordinates.lat
+        ]
+      },
       timestamp: new Date(),
       active: true
     });
