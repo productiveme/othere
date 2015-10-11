@@ -19,13 +19,35 @@ body {
  margin-bottom:0px;
 }
 
+.tagline {
+  color: #fff;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea
 {
   background-color: rgba(56, 107, 120, 0);
-    color: #000;
+  color: #000;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder {
+   text-align: center;  
+}
+
+::-moz-placeholder {
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
 }
 
 .hidingBottom {
@@ -47,7 +69,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 .glyphs {
-  background-color: @brand-primary;
+  background-color: transparent;
   border: 0;
 }
 
