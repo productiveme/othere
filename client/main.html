@@ -31,6 +31,7 @@
   <div class="container">
     {{#if currentUser}}
       {{> yield}}
+        {{> navMenu}}    
     {{else}}
       <!-- {{> head}} -->
       {{#unless loggingIn}}
