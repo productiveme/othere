@@ -1,13 +1,18 @@
 body {
-  background: url('img/bg1.png') no-repeat center center fixed; 
+  background: url('img/bg1.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
+.innerbody {
+  position: relative;
+  top: 95px;  
+}
+
 .panel, .panel-heading, .panel-body, .panel-default, .panel-footer {
- background-color: rgba(56, 107, 120, 0);  
+ background-color: rgba(56, 107, 120, 0);
 }
 
 .panel-default {
@@ -19,17 +24,44 @@ body {
  margin-bottom:0px;
 }
 
+.tagline, .registerLink, .loginLink {
+  color: #fff;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea
 {
   background-color: rgba(56, 107, 120, 0);
-    color: #000;
+  color: #fff;
+  font-size: 18px;
+  padding:10px;
+  letter-spacing: 1px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder {
+   text-align: center;
+}
+
+::-moz-placeholder {
+   text-align: center;
+}
+
+:-ms-input-placeholder {
+   text-align: center;
 }
 
 .hidingBottom {
-  top: 100%;
+  top: 100% !important;
+  height: 0 !important;
+  overflow: hidden;
 }
 
 .abs {
@@ -47,11 +79,11 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 .glyphs {
-  background-color: @brand-primary;
+  background-color: transparent;
   border: 0;
 }
 
-input.transparent-input { 
+input.transparent-input {
     border:none !important;
 }
 
@@ -67,4 +99,11 @@ input.transparent-input{
 
 .btn-black {
   background-color: #000
+}
+
+.menu, .snap {
+  background-color: #fff;
+  height: 70px;
+  width: 70px;
+  border-radius: 100px;
 }

@@ -30,11 +30,21 @@
 <template name="main">
   <div class="container">
     {{#if currentUser}}
-      {{> yield}}
-      <p><a href="#" class="logout">Logout</a></p>
+      {{> navMenu}}   
+      <div class="innerbody">
+        {{> yield}}
+      </div>
     {{else}}
-      {{> login}}
-      {{> register}}
+      <!-- {{> head}} -->
+      {{#unless loggingIn}}
+        <p><a href="#" class="logout">Logout</a></p>
+        {{#unless isRegistering}}
+          {{> login}}
+        {{else}}
+          {{> register}}
+        {{/unless}}
+      {{/unless}}
+
     {{/if}}
   </div>
 </template>

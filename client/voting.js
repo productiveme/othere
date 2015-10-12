@@ -61,11 +61,12 @@ Template.post.helpers({
 });
 
 Template.post.events({
-  "click button[name=love], swiperight .photo, swiperight .post": function(ev, tmpl) {
+  "click button[name=love], swiperight .post": function(ev, tmpl) {
+    
     likeCard(tmpl.$('.post'));
     Meteor.call("likePost", this._id);
   },
-  "click button[name=hate], swipeleft .photo, swipeleft .post": function(ev, tmpl) {
+  "click button[name=hate], swipeleft .post": function(ev, tmpl) {
     unlikeCard(tmpl.$('.post'));
     Meteor.call("unlikePost", this._id);
   }

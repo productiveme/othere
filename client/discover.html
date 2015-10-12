@@ -1,4 +1,27 @@
 <template name="discover">
-  Discovering things near you here.
+  <p class="tagline text-center">
+  	Discovering things near you here.
+  </p>
+  <div class="row">
+    <div class="col-xs-6">
+      {{#each worstposts}}
+        <img src="{{photoSrc}}" class="img-thumbnail">
+        <i class="glyphicon glyphicon-heart" style="transform: rotate(170deg)"></i>{{unlikeCount}}
+        <span class="pull-right"><i class="glyphicon glyphicon-heart-empty" style="color:red;transform:rotate(10deg)"></i> {{likeCount}}</span>
+      {{else}}
+        Please rate some more, nothing to see here.
+      {{/each}}
+    </div>
+    <div class="col-xs-6">
+      {{#each bestposts}}
+        <img src="{{photoSrc}}" class="img-thumbnail">
+        <i class="glyphicon glyphicon-heart" style="transform: rotate(170deg)"></i>{{unlikeCount}}
+        <span class="pull-right"><i class="glyphicon glyphicon-heart-empty" style="color:red;transform:rotate(10deg)"></i> {{likeCount}}</span>
+      {{else}}
+        Please rate some more, nothing to see here.
+      {{/each}}
+    </div>
+  </div>
+
   {{>voting}}
 </template>

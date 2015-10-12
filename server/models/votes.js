@@ -1,6 +1,5 @@
 Meteor.methods({
   shouldUserVoteFirst: function(lng, lat) {
-    return true; //#JS
     check(this.userId, String);
     check(lng, Number);
     check(lat, Number);

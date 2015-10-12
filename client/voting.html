@@ -1,14 +1,14 @@
 <Template name="voting">
   <div id="votingTemplate" class="hidingBottom abs">
-    We need your opinion!
+    <p class="tagline text-center">
+      We need your opinion!
+    </p>
     <div class="posts">
-
-        <div class="voteContainer">
-          {{#each posts}}
-            {{>post}}
-          {{/each}}
-        </div>
-      
+      <div class="voteContainer">
+        {{#each posts}}
+          {{>post}}
+        {{/each}}
+      </div>
     </div>
   </div>
 </Template>
@@ -17,7 +17,9 @@
   <div class="post">
     <div class="photo img-thumbnail img-responsive center-block" style="width:{{photoWidth}}px;height:{{photoHeight}}px;background-image:url({{photoSrc}});">
     </div>
-    <button class="btn" name="hate"><i class="glyphicon glyphicon-heart" style="transform: rotate(170deg);"></i> Hate</button>
-    <button class="btn pull-right" name="love"><i class="glyphicon glyphicon-heart-empty" style="transform: rotate(10deg);color:red;"></i> Love</button>
+    <div class="container">
+      <button class="btn" name="hate"><i class="glyphicon glyphicon-heart" style="transform: rotate(170deg);"></i> Hate</button>
+      <button class="btn pull-right" name="love"><i class="glyphicon glyphicon-heart-empty" style="transform: rotate(10deg);color:red;"></i> Love</button>
+    </div>
   </div>
 </template>
