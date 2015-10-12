@@ -3,7 +3,4 @@
 
 ### TODO
 
-* Confirm e-mail
-* Discover Page
-* 
-
+See [Github Issues] (https://github.com/productiveme/othere/issues)
