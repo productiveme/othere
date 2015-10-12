@@ -30,8 +30,10 @@
 <template name="main">
   <div class="container">
     {{#if currentUser}}
-      {{> yield}}
-        {{> navMenu}}    
+      {{> navMenu}}   
+      <div class="innerbody">
+        {{> yield}}
+      </div>
     {{else}}
       <!-- {{> head}} -->
       {{#unless loggingIn}}
