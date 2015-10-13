@@ -19,11 +19,17 @@ Template.newpost.events({
   'click button[name=snap]': function (ev, tmpl) {
     var cameraOptions = {
       width: 800,
-      height: 800
+      height: 800,
+      quality: 75
     };
 
     MeteorCamera.getPicture(cameraOptions, function (error, data) {
-      tmpl.photoSrc.set(data);
+      if (error) {
+        console.log('error', error);
+      }
+      if (data) {
+        tmpl.photoSrc.set(data);
+      }
     });
   },
   'click button[name=submit]': function (ev, tmpl) {
