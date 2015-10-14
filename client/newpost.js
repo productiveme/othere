@@ -20,7 +20,8 @@ Template.newpost.events({
     var cameraOptions = {
       width: 800,
       height: 800,
-      quality: 75
+      quality: 75,
+      sourceType: Camera.PictureSourceType.CAMERA
     };
 
     MeteorCamera.getPicture(cameraOptions, function (error, data) {
