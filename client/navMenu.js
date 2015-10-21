@@ -44,6 +44,13 @@ Template.navMenu.onRendered(function() {
 				navigationContainer.removeClass('is-fixed');
 				mainNavigation.removeClass('has-transitions');
 			}
-		} 
+		}
+	}
+});
+
+Template.navMenu.events ( {
+	"click .cameraButton": function (e,t) {
+		e.preventDefault();
+		Router.go("/newpost");
 	}
 });
