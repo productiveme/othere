@@ -17,3 +17,7 @@ Router.route('/', function() {
 Router.route("newpost");
 
 Router.route("discover");
+Router.route("/logout", function(){
+  Accounts.logout();
+  this.render('login');
+});
