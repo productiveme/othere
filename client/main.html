@@ -26,11 +26,13 @@
   <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
   <meta http-equiv="cleartype" content="on">
 </head>
-
+<body>
+    {{> sAlert}}
+</body>
 <template name="main">
   <div class="container">
     {{#if currentUser}}
-      {{> navMenu}}   
+      {{> navMenu}}
       <div class="innerbody">
         {{> yield}}
       </div>
