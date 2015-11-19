@@ -1,10 +1,18 @@
 <template name="newpost">
   {{#if photo}}
     <div>
-      <img src={{photo}} />
+      <img src="{{photo}}" />
     </div>
     <input type="text" name="title" placeholder="Title"/>
     <textarea name="description" placeholder="Description"> </textarea>
     <button name="submit">Submit</button>
   {{/if}}
+</template>
+
+<template name="progressBar">
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+      <span class="sr-only">{{progress}}% Complete</span>
+    </div>
+  </div>
 </template>

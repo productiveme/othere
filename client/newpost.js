@@ -38,8 +38,29 @@ Template.newpost.helpers({
 
 Template.newpost.events({
   'click button[name=submit]': function(ev, tmpl) {
+
+     var uploader = new Slingshot.Upload("myFileUploads");
+
+     uploader.send(document.getElementById('input').files[0], function (error, downloadUrl) {
+       if (error) {
+         // Log service detailed response
+         console.error('Error uploading', uploader.xhr.response);
+         alert (error);
+       }
+       else {
+         Meteor.users.update(Meteor.userId(), {$push: {"profile.files": downloadUrl}});
+       }
+     });
+
+
     coordinates = Session.get("coordinates");
     Meteor.call("insertPost", tmpl.photoSrc.get(), tmpl.$("input[name=title]").val(), tmpl.$("textarea[name=description]").val(), coordinates.lng, coordinates.lat)
     Router.go('/discover');
+  }
+});
+
+Template.progressBar.helpers({
+  progress: function () {
+    return Math.round(this.uploader.progress() * 100);
   }
 });
