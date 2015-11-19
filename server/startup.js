@@ -13,4 +13,6 @@ Meteor.startup(function() {
     Meteor.settings["public"].environment = environment;
     return __meteor_runtime_config__.PUBLIC_SETTINGS = Meteor.settings["public"];
   }
+
+  S3.config = Meteor.settings.S3config;
 });

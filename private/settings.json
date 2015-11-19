@@ -4,5 +4,7 @@
   "public": {
     "appname": "Othere"
   },
-  "nearInMetres": 30000
+  "nearInMetres": 30000,
+  "AWSAccessKeyId": "AKIAIYUJDKGYU6U4OA4Q",
+  "AWSSecretAccessKey": "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"
 }
